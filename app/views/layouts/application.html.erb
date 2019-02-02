@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Backapp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>
+      #logo {
+        -moz-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+        -webkit-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+        box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+        padding-left: 15px;
+        padding-right: 15px;
+        float: left;
+        margin-right: 5px;
+        font-size: 2em;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: -1px;
+        padding-top: 9px;        
+         position: relative;
+        -webkit-animation: animatelogo 4s, done 4s infinite; /* Safari 4.0 - 8.0 */
+        animation: animatelogo 4s , done 4s infinite;
+
+      }
+      
+      #logo:hover {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      @-webkit-keyframes done {
+        from {background-color: red;}
+        to {background-color: yellow;}
+      }
+            
+      @keyframes done {
+        from {background-color: black;}
+        to {background-color: grey;}
+      }
+    
+     @-webkit-keyframes animatelogo {
+     0%   {left:0px; }
+     25%  {left:200px; }
+     50%  {left:200px; }
+     75%  {left:0px; top:200px;}
+     100% {left:0px; }
+     }
+
+    @keyframes animatelogo {
+     0%   {left:0px; }
+     25%  {left:200px;}
+     50%  {left:200px;}
+     75%  {left:0px;}
+     85%  {left:0px;}
+     100% {left:0px;}
+     }
+
+     .navbar{
+      background-image: linear-gradient(to right, black , grey);
+     }
+     .navbar-brand, .navbar-nav li a {
+      line-height: 70px;
+      height: 70px;
+      padding-top: 0;
+     }
+     footer {
+       margin-top: 45px;
+       padding-top: 5px;
+       border-top: 1px solid #eaeaea;
+       color: #777;
+     }
+     
+     footer a {
+       color: #555;
+     }
+     
+     footer a:hover {
+       color: #222;
+     }
+     
+     footer small {
+       float: left;
+     }
+     
+     footer ul {
+       float: right;
+       list-style: none;
+     }
+     
+     footer ul li {
+       float: left;
+       margin-left: 15px;
+     }
+
+
+     h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.2em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: #777;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+    </style>
+  </head>
+
+  <body>
+    
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <%= link_to ' m y a p p ', '#' , id: "logo"%>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+
+               <% if current_user %>      
+                 <li>
+                   <p class='navbar-text'> 
+                     <%= "Logged in as #{current_user.email}" %>
+                   </p>
+                 </li>
+                 <li><%= link_to 'Home', welcome_index_path %></li>
+                 <li><%= link_to 'Log Out', logout_path, method: :delete %></li>
+              <% else %>
+                 <li>  <%= link_to 'Home', welcome_index_path %>  </li>
+                 <li> <%= link_to 'Log In', login_path %> </li>
+                 <li> <%= link_to 'Sign Up', new_user_path %> </li>
+              <% end %>
+
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <div class="container">
+
+       <br><br><br><br><br>
+      <% if notice %>
+         <%= notice %>
+      <% end %>
+
+      <% if alert %>
+        <%= alert%>
+      <% end %>
+
+      <%= yield %>
+    </div>
+
+    <footer class="footer">
+     <small>
+       The <a href="http://www.railstutorial.org/">Project Managing and Marketing App</a>
+       by 
+       <a href="http://www.michaelhartl.com/">Marcus Wong</a>
+     </small>
+     <nav>
+       <ul>
+         <li><a href="#">About</a></li>
+         <li><a href="#">Support</a></li>
+         <li><a href="#">News</a></li>
+       </ul>
+     </nav>
+   </footer>
+
+  </body>
+</html>
+
+
+
+
+
+
+
+

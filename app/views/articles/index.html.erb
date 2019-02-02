@@ -1,0 +1,40 @@
+<div class="container">
+
+<h1> Project Archives </h1>
+
+<br>
+<%= link_to '+ Add Your Project', new_article_path %>
+
+
+<br><br>
+<table class="table table-striped">
+	<tr>
+		<th></th>
+		<th> Project Title </th>
+		<th> Project Owner </th>
+		<th></th>
+	</tr>
+
+	<% @articles.each_with_index do |next_article,i| %>
+	  <tr>
+	  	<td> <%= i %> &nbsp; </td>
+	  	<td><%= next_article.title %></td>
+	  	<td> <%= next_article.useremail %> </td>
+	  	<td><%= link_to 'Show', article_path(next_article) %></td>
+	  	 <% if current_user != nil %>
+	  	 <% if current_user.email == next_article.useremail %>
+	  		<td><%= link_to 'Edit', edit_article_path(next_article) %></td>
+			<td><%= link_to 'Destroy',article_path(next_article),method: :delete, data: {confirm: 'Are you sure?'} %></td>
+	  	 <% else %>
+	  		<td></td>
+	  		<td></td>
+	  	 <% end %>
+	  	  <% end %>
+
+	  </tr>
+	<% end %>
+
+
+</table>
+
+</div>

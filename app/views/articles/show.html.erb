@@ -1,0 +1,30 @@
+
+
+<h1><%= @article.title %></h1>
+
+<p>
+	<strong>Project Owner: </strong>
+	<%= @article.useremail %>
+</p>
+
+<p>
+ <strong>Text:</strong>
+ <%= @article.text %>
+</p>
+
+<h3>Comments</h3>
+<%= render @article.comments %>
+
+
+
+
+<h3>Add a comment:</h3>
+<%= render 'comments/form' %>
+<% if current_user != nil%>
+<% if current_user.email == @article.useremail %>
+<%= link_to 'Edit', edit_article_path(@article) %> 
+|
+<% end %>
+<% end %>
+<%= link_to 'Back to project archives', articles_path%> |
+<%= link_to 'Back to home page', welcome_index_path%>
